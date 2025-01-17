@@ -3,6 +3,7 @@ Howdy! This is a simple password generator utilizing Node.js CLI flags that I am
 This README will be updated as I continue to work on this project with instructions on how to use the password generator
 as well as archiving my plaintext changelog.
 
+
 --------------------------------
 
 ## How to Use
@@ -17,17 +18,27 @@ Alternatively, you can run the following command via node:
 passgen
 ```
 
+### Available Flags:
+
+- --help: Displays help menu.
+
 
 --------------------------------
 
 ## Version History/Changelog
+
+- 0.0.3:
+    - Created placeholder character set array to draw from for password generation.
+    - Set default password length of 8.
+    - Added basic password generation functionality.
+    - Updated README.md with available flags section.
+
 
 - 0.0.2:
     - Added basic CLI flag functionality.
     - Added help menu placeholder.
     - Added script to create shorthand node passgen command in package.json.
     - Updated instructions in README.md.
-
 
 
 - 0.0.1:
