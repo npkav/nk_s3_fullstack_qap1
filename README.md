@@ -8,24 +8,38 @@ as well as archiving my plaintext changelog.
 
 ## How to Use
 
-To run the password generator, navigate to /nk_s3_fullstack_qap1/ in the terminal and run the following command:
+This is a command line application. You must run it by navigating to the directory containing the passgen.js file and running
+the program along with any flags you wish to use. For example, we will use node to run the ```passgen``` script along with
+the ```--help``` flag to display the help menu:
 ```
-node passgen.js
+node passgen --help
 ``` 
-
-Alternatively, you can run the following command via node:
-```
-passgen
-```
 
 ### Available Flags:
 
-- --help: Displays help menu.
+Below is a list of available flags you can use with the passgen script, as well as a description of what each flag does.
+
+- --help:           Displays help menu.
+- --lower:          Includes lowercase letters in password generation.
+- --upper:          Includes uppercase letters in password generation.
+- --num:            Includes numbers in password generation.
+- --special:        Includes special characters in password generation.
+- --all:            Includes all characters in password generation.
 
 
 --------------------------------
 
 ## Version History/Changelog
+
+- 0.0.4:
+    - Added lowercase, uppercase, numbers, and special character sets.
+    - Added flags for lower, upper, num, special, and all character sets to be used in generation.
+    - Master character set array now populated by using spread operator to combine other character set arrays.
+    - Added password legnth parameters to be used in teh future.
+    - Updated help menu to display available flags and example command.
+    - Updated README.md available flags section, added example command.
+    - Organized code and added comment headers for readability.
+
 
 - 0.0.3:
     - Created placeholder character set array to draw from for password generation.
