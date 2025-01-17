@@ -12,11 +12,21 @@
 const process = require('process');
 
 
+
 // get cli arguments and set flags
 const args = process.argv.slice(2);
 const validFlags ={
-    "--help": true
+    "--help": true,
 };
+
+
+
+// character set
+const charSet = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+
+// default password length
+const defaultPassLength = 8;
 
 
 
@@ -30,10 +40,26 @@ function help() {
 
 
 
+// generate password function
+function generatePassword(passLength) {
+    let generatedPass = ""; // initialize generated password as empty string
+    for (let i = 0; i < passLength; i++) { // iterate through password length
+        generatedPass += charSet[Math.floor(Math.random() * charSet.length)]; // add random character from character set to generated password for each iteration
+    }
+    return generatedPass; // return generated password
+}
+
+
 // main function
 function main() {
-    if (args.includes('--help')) {
+    // check for help flag
+    if (args.includes('--help')){
         help();
+    }
+
+    // run generatePassword with default pass length if no flags provided
+    if (args.length === 0) {
+        console.log(generatePassword(defaultPassLength));
     }
 }
 
