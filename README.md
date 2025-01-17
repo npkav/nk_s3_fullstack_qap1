@@ -12,10 +12,23 @@ To run the password generator, navigate to /nk_s3_fullstack_qap1/ in the termina
 node passgen.js
 ``` 
 
+Alternatively, you can run the following command via node:
+```
+passgen
+```
+
 
 --------------------------------
 
 ## Version History/Changelog
+
+- 0.0.2:
+    - Added basic CLI flag functionality.
+    - Added help menu placeholder.
+    - Added script to create shorthand node passgen command in package.json.
+    - Updated instructions in README.md.
+
+
 
 - 0.0.1:
     - Initial release.
