@@ -10,5 +10,8 @@
     },
     "dependencies": {
         "node": "???"
+    },
+    "scripts": {
+        "passgen": "node passgen.js"
     }
 }
