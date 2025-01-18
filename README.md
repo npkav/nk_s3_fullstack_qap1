@@ -9,16 +9,18 @@ as well as archiving my plaintext changelog.
 ## How to Use
 
 This is a command line application. You must run it by navigating to the directory containing the passgen.js file and running
-the program along with any flags you wish to use. For example, we will use node to run the ```passgen``` script along with
-the ```--help``` flag to display the help menu:
+the program along with any flags you wish to use.
+
+For example, we will use node to run the ```passgen``` script along with the ```--help``` flag to display the help menu:
 ```
 node passgen --help
 ``` 
 
 ### Available Flags:
 
-Below is a list of available flags you can use with the passgen script, as well as a description of what each flag does.
+Below is a list of available flags you can use with the passgen script, as well as a description of what each flag does:
 
+- 6-64:             Sets the password length to a value between 6 and 64.
 - --help:           Displays help menu.
 - --lower:          Includes lowercase letters in password generation.
 - --upper:          Includes uppercase letters in password generation.
@@ -26,10 +28,25 @@ Below is a list of available flags you can use with the passgen script, as well 
 - --special:        Includes special characters in password generation.
 - --all:            Includes all characters in password generation.
 
+To generate a password with 24 characters that includes lowercase letters and numbers, you would use the following command:
+```
+node passgen --lower --num 24
+```
 
 --------------------------------
 
 ## Version History/Changelog
+
+- 0.0.5:
+    - Moved master character set array into main function.
+    - Master character set array now populated by pushing other character sets into it.
+    - Added password length flag and functionality.
+    - Added password length validation and error handling.
+    - Added valid flag check for all flags.
+    - Updated help menu available flags section and example command.
+    - Updated README.md available flags section and example command.
+    - Reordered code and updated comments for functionality and readability.
+
 
 - 0.0.4:
     - Added lowercase, uppercase, numbers, and special character sets.
