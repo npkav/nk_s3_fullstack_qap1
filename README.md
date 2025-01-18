@@ -46,6 +46,7 @@ node passgen --lower --num 24
     - Updated help menu available flags section and example command.
     - Updated README.md available flags section and example command.
     - Reordered code and updated comments for functionality and readability.
+    - Added .gitignore file to ignore commonly-ignored file types.
 
 
 - 0.0.4:
