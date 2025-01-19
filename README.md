@@ -37,7 +37,7 @@ Output:
  > pa55w0rdpa55w0rdpa55w0rd
 ```
 
-Fun fact! Under the same parameters, you have a 1 in 22,490,000,000,000,000,000,000,000,000,000,000,000,000 chance of getting the same identical password in any given generation! If ran 100 generations per minute, it would, on average, take you roughly 13.8 billion years to get the same password twice.
+Fun fact! Under the same parameters, you have a 1 in 22,490,000,000,000,000,000,000,000,000,000,000,000,000 chance of getting the same identical password in any given generation! If you ran 100 generations per minute, it would, on average, take you roughly 13.8 billion years to get the same password twice.
 
 --------------------------------
 
