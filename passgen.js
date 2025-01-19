@@ -87,7 +87,9 @@ function help() {
                 "this script and run the command with the flags you want to use:\n");
     console.log("For example, to generate a password with 24 characters that includes\n" +
                 "lowercase letters and numbers, you would use the following command:\n");
-    console.log(" > node passgen --lower --num 24\n");
+    console.log(" > node passgen --lower --n 24\n");
+    console.log("Output:\n");
+    console.log(" > pa55w0rdpa55w0rdpa55w0rd\n");
 
     // exit program
     process.exit(0);
@@ -124,7 +126,7 @@ function validateArg(arg) {
 
     // check if argument is a number
     let lengthValue = parseInt(arg); // parse argument as integer
-    
+
     if (isNaN(lengthValue)) { // if not a number, throw general invalid input error and exit program
         console.log("ERROR: Invalid input:"+arg+"\n" +
                     "Please use --help or --h for a list of valid flags.");
