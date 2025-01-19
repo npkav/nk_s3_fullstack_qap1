@@ -19,7 +19,7 @@ node passgen --help
 ### Available Flags:
 
 Below is a list of available flags you can use with the passgen script, as well as a description of what each flag does:
-
+```
 - --help, --h:                 Displays help menu.
 - --lower, --l, --low:         Includes lowercase letters in password generation.
 - --upper, --u, --up:          Includes uppercase letters in password generation.
@@ -27,6 +27,7 @@ Below is a list of available flags you can use with the passgen script, as well 
 - --special, --s, --spec:      Includes special characters in password generation.
 - --all, --a:                  Includes all characters in password generation.
 -   [6-64]                     Value between 6 and 64 to determine custom password length.
+```
 
 To generate a password with 24 characters that includes lowercase letters and numbers, you would use the following command:
 ```
