@@ -20,8 +20,8 @@ const process = require('process');
 ////////////////
 const charAlphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 const charAlphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-const charNumeric = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const charSpecial = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", ":", ";", "<", ">", "?", ".", ",", "/", "~", "`"];
+const charNumeric =    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const charSpecial =    ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", ":", ";", "<", ">", "?", ".", ",", "/", "~", "`"];
 
 
 
@@ -41,11 +41,21 @@ let passLength = defaultPassLength; // initialize pass length as default
 /////////////
 const validFlags ={
     "--help": true,
+    "--h": true,
     "--lower": true,
+    "--l": true,
+    "--low": true,
     "--upper": true,
+    "--u": true,
+    "--up": true,
+    "--number": true,
+    "--n": true,
     "--num": true,
     "--special": true,
+    "--s": true,
+    "--spec": true,
     "--all": true,
+    "--a": true,
 };
 
 
@@ -63,13 +73,13 @@ function help() {
                 "character sets you want to use in your password:\n");
 
     // flag list
-    console.log("  --help       Displays help menu");
-    console.log("  --lower      Includes lowercase letters");
-    console.log("  --upper      Includes uppercase letters");
-    console.log("  --num        Includes numbers");
-    console.log("  --special    Includes special characters");
-    console.log("  --all        Includes all characters");
-    console.log("  ["+minPassLength+"-"+maxPassLength+"]       Sets the password length to a value between "+minPassLength+" and "+maxPassLength);
+    console.log("  --help, --h               Displays help menu");
+    console.log("  --lower, --l, --low       Includes lowercase letters");
+    console.log("  --upper, --u, --up        Includes uppercase letters");
+    console.log("  --number, --n, --num      Includes numbers");
+    console.log("  --special, --s, --spec    Includes special characters");
+    console.log("  --all, --a                Includes all characters");
+    console.log("    ["+minPassLength+"-"+maxPassLength+"]                  Sets the password length to a value between "+minPassLength+" and "+maxPassLength);
     console.log("");
 
     // example command
@@ -108,7 +118,7 @@ function validateArg(arg) {
             return;
         }
         console.log("ERROR: Invalid flag:"+arg+"\n" +
-                    "Please use --help for a list of valid flags.");
+                    "Please use --help or --h for a list of valid flags.");
         process.exit(1); // if flag is not valid, throw error and exit program
     }
 
@@ -117,7 +127,7 @@ function validateArg(arg) {
     
     if (isNaN(lengthValue)) { // if not a number, throw general invalid input error and exit program
         console.log("ERROR: Invalid input:"+arg+"\n" +
-                    "Please use --help for a list of valid flags.");
+                    "Please use --help or --h for a list of valid flags.");
         process.exit(1);
     }
     if (lengthValue < minPassLength) { // if less than minimum length, throw error and return minimum length
@@ -146,7 +156,7 @@ function main() {
     charSet = [];
 
     // check for help flag
-    if (args.includes('--help')){
+    if (args.includes('--help') || args.includes('--h')){
         help();
     }
 
@@ -157,19 +167,19 @@ function main() {
     });
 
     // check for character set flags and add to character set
-    if (args.includes('--lower')){
+    if (args.includes('--lower') || args.includes('--l') || args.includes('--low')){
         charSet.push(...charAlphaLower);
     }
-    if (args.includes('--upper')){
+    if (args.includes('--upper') || args.includes('--u') || args.includes('--up')){
         charSet.push(...charAlphaUpper);
     }
-    if (args.includes('--num')){
+    if (args.includes('--number') || args.includes('--n') || args.includes('--num')){
         charSet.push(...charNumeric);
     }
-    if (args.includes('--special')){
+    if (args.includes('--special') || args.includes('--s') || args.includes('--spec')){
         charSet.push(...charSpecial);
     }
-    if (args.includes('--all')){
+    if (args.includes('--all') || args.includes('--a')){
         charSet = [...charAlphaLower, ...charAlphaUpper, ...charNumeric, ...charSpecial];
     }
 
@@ -180,6 +190,8 @@ function main() {
 
     // generate password
     console.log(generatePassword(passLength));
+
+    //console.log(charSet); // TESTING: REMEMBER TO REMOVE
 }
 
 
