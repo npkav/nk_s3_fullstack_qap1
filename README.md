@@ -41,16 +41,17 @@ Fun fact! Under the same parameters, you have a 1 in 22,490,000,000,000,000,000,
 
 --------------------------------
 
-## Version History/Changelog
+# Version History/Changelog
 
-- 0.0.6:
+### 0.0.6:
     - Added shorthand flags for all existing flags.
     - Updated help menu to display shorthand flags.
     - Updated README.md to display shorthand flags and fun fact.
     - Updated README.md and help menu example commands to showcase shorthand flags.
+    - Updated README.md formatting.
 
 
-- 0.0.5:
+### 0.0.5:
     - Moved master character set array into main function.
     - Master character set array now populated by pushing other character sets into it.
     - Added password length flag and functionality.
@@ -62,7 +63,7 @@ Fun fact! Under the same parameters, you have a 1 in 22,490,000,000,000,000,000,
     - Added .gitignore file to ignore commonly-ignored file types.
 
 
-- 0.0.4:
+### 0.0.4:
     - Added lowercase, uppercase, numbers, and special character sets.
     - Added flags for lower, upper, num, special, and all character sets to be used in generation.
     - Master character set array now populated by using spread operator to combine other character set arrays.
@@ -72,21 +73,21 @@ Fun fact! Under the same parameters, you have a 1 in 22,490,000,000,000,000,000,
     - Organized code and added comment headers for readability.
 
 
-- 0.0.3:
+### 0.0.3:
     - Created placeholder character set array to draw from for password generation.
     - Set default password length of 8.
     - Added basic password generation functionality.
     - Updated README.md with available flags section.
 
 
-- 0.0.2:
+### 0.0.2:
     - Added basic CLI flag functionality.
     - Added help menu placeholder.
     - Added script to create shorthand node passgen command in package.json.
     - Updated instructions in README.md.
 
 
-- 0.0.1:
+### 0.0.1:
     - Initial release.
 
 
