@@ -49,8 +49,8 @@ years to get the same password twice.
     - Reordered code for logic flow.
     - Now handling flags and character sets as objects.
     - Now using .some() to check if any part of the args array includes anything from the flags object.
-    - Updated comments for conciseness and readability.
-    - Housekeeping, code uniformity, and readability.
+    - Updated comments for conciseness and clarity.
+    - Housekeeping and code uniformity.
 
 
 ### 0.0.6:

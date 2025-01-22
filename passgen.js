@@ -1,7 +1,6 @@
-// Nickolas Kavanagh
-// SD12 Full Stack JavaScript 
-// QAP 1 - Password Generator
-// 16/01/2025 - 23/01/2025
+// Nickolas Kavanagh - SD12
+// Semester 3 - Full Stack JavaScript
+// 2025/01/16 - 2025/01/23
 
 // Create a Command-Line Interface (CLI) application in Node.js that generates
 // passwords for users based on arguments they provide via flags.
@@ -11,17 +10,35 @@
 ///////////
 // imports
 /////////
-const process = require('process');
+const process = require("process");
 
 
 
 //////////////////
 // character sets
 ////////////////
-const charAlphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const charAlphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-const charNumeric =    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const charSpecial =    ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", ":", ";", "<", ">", "?", ".", ",", "/", "~", "`"];
+const chars = {
+    alphaLower:  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+    alphaUpper:  ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+    numeric:     ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    special:     ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", ":", ";", "<", ">", "?", ".", ",", "/", "~", "`"]
+};
+
+let charSet = []; // initialize character set as empty array
+
+
+
+///////////////
+// valid flags
+/////////////
+const flags = { // object to store valid flags
+    help:     ["--help", "--h"],
+    lower:    ["--lower", "--l", "--low"],
+    upper:    ["--upper", "--u", "--up"],
+    number:   ["--number", "--n", "--num"],
+    special:  ["--special", "--s", "--spec"],
+    all:      ["--all", "--a"]
+};
 
 
 
@@ -36,27 +53,57 @@ let passLength = defaultPassLength; // initialize pass length as default
 
 
 
-///////////////
-// valid flags
-/////////////
-const validFlags ={
-    "--help": true,
-    "--h": true,
-    "--lower": true,
-    "--l": true,
-    "--low": true,
-    "--upper": true,
-    "--u": true,
-    "--up": true,
-    "--number": true,
-    "--n": true,
-    "--num": true,
-    "--special": true,
-    "--s": true,
-    "--spec": true,
-    "--all": true,
-    "--a": true,
-};
+///////////////////////////////
+// validate arguments function
+/////////////////////////////
+function validateArg(arg) {
+    // check if argument is a valid flag
+    if (arg.startsWith("--")) {
+        if (Object.values(flags).flat().includes(arg)) { // if arg is present in flattened flags object, return true
+            return;
+        }
+        console.log("ERROR: Invalid flag:"+arg+"\n" + // else throw error and exit program
+                    "Please use --help or --h for a list of valid flags.");
+        process.exit(1);
+    }
+
+    // check if argument is a number, if not throw error and exit program
+    if (isNaN(arg)) {
+        console.log("ERROR: Invalid input:"+arg+"\n" +
+                    "Please use --help or --h for a list of valid flags.");
+        process.exit(1);
+    }
+    let lengthValue = parseInt(arg); // else parse as integer
+
+    // if argument value is less than minimum length, throw error and return minimum length
+    if (lengthValue < minPassLength) {
+        console.log("ERROR: Value "+arg+" is less than minimum length.\n" +
+                    "The minimum length of "+minPassLength+" will be used.");
+        return minPassLength;
+    }
+    // if argument value is greater than maximum length, throw error and return maximum length
+    if (lengthValue > maxPassLength) {
+        console.log("ERROR: Value "+arg+" is greater than maximum length.\n" +
+                    "The maximum length of "+maxPassLength+" will be used.");
+        return maxPassLength;
+    }
+
+    // if argument is valid length, return it
+    return lengthValue;
+}
+
+
+
+//////////////////////////////
+// generate password function
+////////////////////////////
+function generatePassword(passLength) {
+    let generatedPass = ""; // initialize generated password as empty string
+    for (let i = 0; i < passLength; i++) { // iterate through password length
+        generatedPass += charSet[Math.floor(Math.random() * charSet.length)]; // add random character from character set to generated password for each iteration
+    }
+    return generatedPass; // return generated password
+}
 
 
 
@@ -97,56 +144,6 @@ function help() {
 
 
 
-//////////////////////////////
-// generate password function
-////////////////////////////
-function generatePassword(passLength) {
-    let generatedPass = ""; // initialize generated password as empty string
-    for (let i = 0; i < passLength; i++) { // iterate through password length
-        generatedPass += charSet[Math.floor(Math.random() * charSet.length)]; // add random character from character set to generated password for each iteration
-    }
-    return generatedPass; // return generated password
-}
-
-
-
-///////////////////////////////
-// validate arguments function
-/////////////////////////////
-function validateArg(arg) {
-    // check if argument is a valid flag
-    if (arg.startsWith('--')) {
-        if (validFlags[arg]) { // if flag is valid, return
-            return;
-        }
-        console.log("ERROR: Invalid flag:"+arg+"\n" +
-                    "Please use --help or --h for a list of valid flags.");
-        process.exit(1); // if flag is not valid, throw error and exit program
-    }
-
-    // check if argument is a number
-    let lengthValue = parseInt(arg); // parse argument as integer
-
-    if (isNaN(lengthValue)) { // if not a number, throw general invalid input error and exit program
-        console.log("ERROR: Invalid input:"+arg+"\n" +
-                    "Please use --help or --h for a list of valid flags.");
-        process.exit(1);
-    }
-    if (lengthValue < minPassLength) { // if less than minimum length, throw error and return minimum length
-        console.log("ERROR: Value "+arg+" is less than minimum length.\n" +
-                    "The minimum length of "+minPassLength+" will be used.");
-        return minPassLength;
-    }
-    if (lengthValue > maxPassLength) { // if greater than maximum length, throw error and return maximum length
-        console.log("ERROR: Value "+arg+" is greater than maximum length.\n" +
-                    "The maximum length of "+maxPassLength+" will be used.");
-        return maxPassLength;
-    }
-    return lengthValue; // return valid length value
-}
-
-
-
 /////////////////
 // main function
 ///////////////
@@ -154,11 +151,8 @@ function main() {
     // get cli arguments
     const args = process.argv.slice(2);
 
-    // initialize empty character set to be populated by flags
-    charSet = [];
-
-    // check for help flag
-    if (args.includes('--help') || args.includes('--h')){
+    // check if any of the args match one of the flags in flags.help, if so call help()
+    if (args.some(arg => flags.help.includes(arg))){
         help();
     }
 
@@ -168,26 +162,26 @@ function main() {
         if (validLength) passLength = validLength;
     });
 
-    // check for character set flags and add to character set
-    if (args.includes('--lower') || args.includes('--l') || args.includes('--low')){
-        charSet.push(...charAlphaLower);
+    // check for character set flags in args using .some(), then add appropriate character set
+    if (args.some(arg => flags.lower.includes(arg))){
+        charSet.push(...chars.alphaLower);
     }
-    if (args.includes('--upper') || args.includes('--u') || args.includes('--up')){
-        charSet.push(...charAlphaUpper);
+    if (args.some(arg => flags.upper.includes(arg))){
+        charSet.push(...chars.alphaUpper);
     }
-    if (args.includes('--number') || args.includes('--n') || args.includes('--num')){
-        charSet.push(...charNumeric);
+    if (args.some(arg => flags.number.includes(arg))){
+        charSet.push(...chars.numeric);
     }
-    if (args.includes('--special') || args.includes('--s') || args.includes('--spec')){
-        charSet.push(...charSpecial);
+    if (args.some(arg => flags.special.includes(arg))){
+        charSet.push(...chars.special);
     }
-    if (args.includes('--all') || args.includes('--a')){
-        charSet = [...charAlphaLower, ...charAlphaUpper, ...charNumeric, ...charSpecial];
+    if (args.some(arg => flags.all.includes(arg))){
+        charSet = [...chars.alphaLower, ...chars.alphaUpper, ...chars.numeric, ...chars.special];
     }
 
     // if no flags provided, use whole character set
     if (charSet.length === 0) {
-        charSet = [...charAlphaLower, ...charAlphaUpper, ...charNumeric, ...charSpecial];
+        charSet = [...chars.alphaLower, ...chars.alphaUpper, ...chars.numeric, ...chars.special];
     }
 
     // generate password
