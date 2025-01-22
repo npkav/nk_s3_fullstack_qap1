@@ -3,7 +3,6 @@ Howdy! This is a simple password generator utilizing Node.js CLI flags that I am
 This README will be updated as I continue to work on this project with instructions on how to use the password generator
 as well as archiving my plaintext changelog.
 
-
 --------------------------------
 
 ## How to Use
@@ -38,11 +37,21 @@ Output:
  > pa55w0rdpa55w0rdpa55w0rd
 ```
 
-Fun fact! Under the same parameters, you have a 1 in 22,490,000,000,000,000,000,000,000,000,000,000,000,000 chance of getting the same identical password in any given generation! If you ran 100 generations per minute, it would, on average, take you roughly 13.8 billion years to get the same password twice.
+Fun fact! Under the same parameters, you have a 1 in 22,490,000,000,000,000,000,000,000,000,000,000,000,000 chance of getting the same
+identical password in any given generation! If you ran 100 generations per minute, it would, on average, take you roughly 13.8 billion
+years to get the same password twice.
 
 --------------------------------
 
 # Version History/Changelog
+
+### 0.0.7:
+    - Reordered code for logic flow.
+    - Now handling flags and character sets as objects.
+    - Now using .some() to check if any part of the args array includes anything from the flags object.
+    - Updated comments for conciseness and readability.
+    - Housekeeping, code uniformity, and readability.
+
 
 ### 0.0.6:
     - Added shorthand flags for all existing flags.

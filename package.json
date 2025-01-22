@@ -2,7 +2,7 @@
     "name": "nk-s3-qap1-password-generator",
     "assignment": "Full Stack JavaScript QAP 1",
     "description": "This tool accepts flags input by the user to generate a password of the desired length and character set.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "author": "Nickolas Kavanagh (npkav.dev)",
     "repository": {
         "type": "git",
